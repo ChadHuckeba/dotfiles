@@ -5,7 +5,8 @@ Personal configuration files and automated workflows for my development environm
 
 ### ♊ Gemini CLI (`gemini/`)
 Contains global instructions and workflows.
-- **GEMINI.md**: Global "laws" and memories.
+- **GEMINI.md**: Global "laws" and memories shared across all projects.
+- *Note: Project-specific rules are kept "out-of-band" from this repository and reside in their respective project roots at `.gemini/GEMINI.md`.*
 
 ### 🐚 Shell (`shell/`)
 Version-controlled shell configuration files.
