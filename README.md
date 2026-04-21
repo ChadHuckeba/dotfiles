@@ -15,9 +15,12 @@ Version-controlled shell configuration files.
 
 ### 🛠️ Setup (`setup/`)
 Infrastructure-as-code for environment reproduction.
-- **bootstrap.sh**: Master script to install APT packages, Node/NVM, and global tools.
+- **bootstrap.sh**: Master script to install system tools, runtimes, and configs.
 - **apt-packages.txt**: List of required system utilities.
 - **npm-globals.txt**: List of required global JavaScript tools.
+- **Runtimes Managed**:
+    - **Python**: Installed and managed via [uv](https://github.com/astral-sh/uv).
+    - **Node.js**: Managed via [nvm](https://github.com/nvm-sh/nvm).
 
 ## 🚀 Reproduction
 To build this environment on a fresh WSL instance:
