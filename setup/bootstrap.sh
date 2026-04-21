@@ -17,7 +17,17 @@ echo "Checking APT packages..."
 sudo apt update
 sudo apt install -y $(cat ~/dotfiles/setup/apt-packages.txt)
 
-# 2. Setup NVM & Node
+# 2. Setup UV (Python Version & Package Manager)
+if ! command_exists uv; then
+    echo "Installing UV..."
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    # Load for current session
+    export PATH="$HOME/.local/bin:$PATH"
+else
+    echo "UV already installed."
+fi
+
+# 3. Setup NVM & Node
 if [ ! -d "$HOME/.nvm" ]; then
     echo "Installing NVM..."
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
@@ -32,7 +42,7 @@ if ! command_exists node; then
     nvm install --lts
 fi
 
-# 3. Global NPM Packages
+# 4. Global NPM Packages
 echo "Ensuring Global NPM Packages..."
 for pkg in $(cat ~/dotfiles/setup/npm-globals.txt); do
     if ! npm list -g "$pkg" >/dev/null 2>&1; then
@@ -43,7 +53,7 @@ for pkg in $(cat ~/dotfiles/setup/npm-globals.txt); do
     fi
 done
 
-# 4. Setup Oh My Zsh
+# 5. Setup Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing Oh My Zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -51,7 +61,7 @@ else
     echo "Oh My Zsh already present."
 fi
 
-# 5. Finalize Symlinks
+# 6. Finalize Symlinks
 echo "Validating Symlinks..."
 
 safe_link() {
