@@ -4,27 +4,27 @@ Personal configuration files and automated workflows for my development environm
 ## 📁 Repository Structure
 
 ### ♊ Gemini CLI (`gemini/`)
-Contains global instructions, personas, and automated workflows for the Gemini CLI agent.
-- **GEMINI.md**: Global \"laws\" and memories shared across all projects.
+Contains global instructions and workflows.
+- **GEMINI.md**: Global "laws" and memories.
 
-## 🛠️ Management
+### 🐚 Shell (`shell/`)
+Version-controlled shell configuration files.
+- **.bashrc**: Standard Bash config.
+- **.zshrc**: Zsh with Oh My Zsh and plugins.
 
-### Symlinks
-This repository uses symlinks to map configuration files from the `dotfiles/` directory to their expected locations in the home directory.
+### 🛠️ Setup (`setup/`)
+Infrastructure-as-code for environment reproduction.
+- **bootstrap.sh**: Master script to install APT packages, Node/NVM, and global tools.
+- **apt-packages.txt**: List of required system utilities.
+- **npm-globals.txt**: List of required global JavaScript tools.
 
-**Example (Gemini CLI):**
-```bash
-ln -s ~/dotfiles/gemini/GEMINI.md ~/.gemini/GEMINI.md
-```
-
-### Versioning
-Changes to global instructions or added memories should be committed periodically:
-```bash
-cd ~/dotfiles
-git add .
-git commit -m \"Update configurations\"
-git push origin main
-```
+## 🚀 Reproduction
+To build this environment on a fresh WSL instance:
+\`\`\`bash
+git clone git@github.com:ChadHuckeba/dotfiles.git ~/dotfiles
+cd ~/dotfiles/setup
+./bootstrap.sh
+\`\`\`
 
 ---
 © 2026 SurvivalStack
