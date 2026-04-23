@@ -1,4 +1,4 @@
-# SurvivalStack | Global Instructions & Corporate Standards (v2.0 - April 2026)
+# SurvivalStack | Global Instructions & Corporate Standards
 
 ## 1. GitHub Project & Issue Governance
 
