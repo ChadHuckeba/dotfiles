@@ -32,3 +32,5 @@ cd ~/dotfiles/setup
 
 ---
 © 2026 SurvivalStack
+n---
+*This environment is optimized for AI-assisted development.*
