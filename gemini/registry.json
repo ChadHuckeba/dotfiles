@@ -1,0 +1,19 @@
+{
+  "master_template_project_id": 9,
+  "field_ids": {
+    "status": {
+      "vanguard": "PVTSSF_lAHOAneE784BUCMuzhBNEqg",
+      "dotfiles": "PVTSSF_lAHOAneE784BVehbzhQ6Emk",
+      "aether": "PVTSSF_lAHOAneE784BVfhhzhQ69hI"
+    }
+  },
+  "option_ids": {
+    "status": {
+      "backlog": "f75ad846",
+      "ready": "61e4505c",
+      "in_progress": "47fc9ee4",
+      "in_review": "df73e18b",
+      "done": "98236657"
+    }
+  }
+}

@@ -10,10 +10,12 @@
   - Maintain real-time synchronization of project item status (Todo -> In Progress -> Done).
 
 #### 1.1.1 Memory Schema
+- **Two-Store Architecture**: 
+  - **Dynamic Session State**: Governed by the JSON schema below, written via `save_memory(scope='project')`.
+  - **Static Registry Data**: Lives in `gemini/registry.json`. Read from file, NOT from memory. Do not duplicate registry data into session memory.
 - **Mandate**: All dynamic data saved via `save_memory(scope='project')` MUST conform to the standard schema formatted as a strict JSON block.
 - **Rules**:
   - Do not inject arbitrary keys; propose a schema update first if new data points are required.
-  - This JSON block coexists with the static "GitHub Registry" in the project memory file.
 - **Standard Schema**:
   ```json
   {
@@ -42,9 +44,10 @@
   - **Consult**: I MUST ask: "Should I also provision a standardized Project Board from the Master Template?"
   - **If YES**:
     1. Create the repository.
-    2. Execute `gh project copy 9 --owner ChadHuckeba --title "<Repo Name>"` to create the standardized board (ensuring the Project Board name matches the Repository name exactly).
-    3. Link the project board to the new repository.
-    4. Fetch the new Field/Option IDs and update the **GitHub Registry** in memory.
+    2. Resolve the Master Template Project ID from `gemini/registry.json`.
+    3. Execute `gh project copy <ID> --owner ChadHuckeba --title "<Repo Name>"` to create the standardized board (ensuring the Project Board name matches the Repository name exactly).
+    4. Link the project board to the new repository.
+    5. Fetch any unique Field/Option IDs and update `gemini/registry.json` (requires user approval).
   - **If NO**: Create the repository only and register it in memory without a board.
 
 ## 2. Git Workflow & Branching Standards
@@ -64,6 +67,10 @@
 
 ### 3.1 Mandatory Verification
 - **Test-First Closure**: Before closing an issue or merging code, I must execute the project's test suite and report results.
+- **No-Test-Suite Fallback**: If no test suite exists, I must:
+  1. Document that fact explicitly.
+  2. State what manual verification was performed instead.
+  3. Request explicit user confirmation before closing or merging.
 
 ## 4. Code Review & Approval
 
@@ -71,3 +78,15 @@
 - **Mandate**: Before executing `git commit` or merging any Pull Request, I must present a concise summary or diff of the changes to the user.
 - **Approval**: I must explicitly wait for user approval (e.g., "LGTM", "yes", "approved") or feedback before finalizing the commit.
 - **Iterative Refinement**: If feedback is provided, I will adjust the implementation and re-submit the changes for another review round.
+
+## 5. Memory Architecture
+
+### 5.1 Two-Store Design
+- **Static Registry (`gemini/registry.json`)**:
+  - Contains static reference data (Field IDs, Option IDs, Master Template ID).
+  - Source of truth for all GitHub Project configurations.
+  - **Read-Mostly**: Changes require explicit user approval.
+- **Session Memory (`save_memory(scope='project')`)**:
+  - Dynamic runtime state only (Branch, Issues, Session Summaries).
+  - Governed by the schema in **Section 1.1.1**.
+  - **Rule**: Never write static registry data here.
