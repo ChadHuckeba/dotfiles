@@ -9,6 +9,21 @@
   - **Memory Persistence**: Use `save_memory(scope='project')` to store the Project ID once identified.
   - Maintain real-time synchronization of project item status (Todo -> In Progress -> Done).
 
+#### 1.1.1 Memory Schema
+- **Mandate**: All dynamic data saved via `save_memory(scope='project')` MUST conform to the standard schema formatted as a strict JSON block.
+- **Rules**:
+  - Do not inject arbitrary keys; propose a schema update first if new data points are required.
+  - This JSON block coexists with the static "GitHub Registry" in the project memory file.
+- **Standard Schema**:
+  ```json
+  {
+    "project_id": "string",
+    "active_branch": "string",
+    "open_issues": ["array of ints"],
+    "last_session_summary": "string"
+  }
+  ```
+
 ### 1.2 Issue Automation (Detection & Creation)
 - **Identification**: Call out concerns or technical debt immediately.
 - **Execution**: Use `gh issue create` with labels (`bug`, `enhancement`, `refactor`).
