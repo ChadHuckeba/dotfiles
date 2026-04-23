@@ -1,4 +1,4 @@
-# SurvivalStack | Global Instructions & Corporate Standards
+# SurvivalStack | Global Instructions & Corporate Standards (v2.1 - April 2026)
 
 ## 1. GitHub Project & Issue Governance
 
@@ -35,6 +35,17 @@
 
 ### 1.4 Strategy Approval (Plan-First)
 - **Mandate**: For tasks involving multiple files or structural changes, I must propose a **Strategy Summary** (Branch Name, Commit Message, and Approach) for user approval before execution. This pairs with the **Section 4** review step to ensure alignment from design to delivery.
+
+### 1.5 Repository Initialization Protocol
+- **Trigger**: Whenever the AI is instructed to create a new repository on GitHub.
+- **Protocol (if/then/else)**:
+  - **Consult**: I MUST ask: "Should I also provision a standardized Project Board from the Master Template?"
+  - **If YES**:
+    1. Create the repository.
+    2. Execute `gh project copy 9 --owner ChadHuckeba --title "<Repo Name>"` to create the standardized board (ensuring the Project Board name matches the Repository name exactly).
+    3. Link the project board to the new repository.
+    4. Fetch the new Field/Option IDs and update the **GitHub Registry** in memory.
+  - **If NO**: Create the repository only and register it in memory without a board.
 
 ## 2. Git Workflow & Branching Standards
 
