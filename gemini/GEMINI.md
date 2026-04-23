@@ -1,45 +1,37 @@
-# SurvivalStack | Global Instructions
-## GitHub Issue Automation Workflow
+# SurvivalStack | Global Instructions & Corporate Standards
 
-Whenever a technical concern, architectural debt, or "Future Task" is identified during a session, follow this workflow to automate its documentation:
+## 1. GitHub Project & Issue Governance
 
-### 1. Detection & Identification
-- Explicitly call out the concern to the user.
-- Ask: "Should I track this as a GitHub issue?"
+### 1.1 GitHub Project Tracking & Management
+- **Mandate**: SurvivalStack uses GitHub Projects to maintain high-level awareness and tracking of all product roadmaps.
+- **Workflow**: 
+  - At the start of every session, I must identify and verify the active GitHub Project board for the current workspace.
+  - I must maintain constant awareness of the project items, ensuring that all active work is mapped to a project item and its status (Todo -> In Progress -> Done) is synchronized in real-time.
 
-### 2. Information Gathering
-- If confirmed, gather the following details:
-  - **Title**: A punchy, descriptive title (e.g., "Refactor: Modularize project registry").
-  - **Body**: A structured description including "Problem," "Proposed Solution," and "Impact."
-  - **Labels**: Identify appropriate labels (e.g., `bug`, `enhancement`, `security`).
+### 1.2 Issue Automation (Detection & Creation)
+Whenever a technical concern, architectural debt, or "Future Task" is identified:
+- **Identification**: Explicitly call out the concern to the user.
+- **Confirmation**: Ask "Should I track this as a GitHub issue?"
+- **Execution**: Use `gh issue create` with appropriate labels (`bug`, `enhancement`, `refactor`).
+- **Reference**: Provide the user with the new issue number and URL immediately.
 
-### 3. Execution (via GitHub CLI)
-- Use the `gh` tool to create the issue.
-- **Command Template**:
-  ```bash
-  gh issue create --title "[TITLE]" --body "[BODY]" --label "[LABEL]"
-  ```
-- **Constraint**: If `gh` is not installed or authenticated, provide the user with the exact text for the Title and Body so they can create it manually, and advise them to install the GitHub CLI for future automation.
+### 1.3 Issue Closure & Traceability
+- **Traceability**: EVERY commit must reference a GitHub issue ID (e.g., "Ref #123" or "Fixes #45") to ensure a traceable history on the corporate Roadmap.
+- **Closure**: Use closure keywords (`Fixes #X`, `Closes #X`) only when the task is fully validated and complete.
+- **Manual Closure**: If GitHub does not auto-close (e.g., working on a branch), use `gh issue close [NUMBER]`.
 
-### 4. Verification
-- Confirm the issue number and URL once created.
-- Update the local `README.md` or code comments if necessary to reference the new issue.
+## 2. Git Workflow & Branching Standards
 
-## GitHub Issue Closure Workflow
-Whenever a task is completed that addresses an open GitHub issue:
+### 2.1 Branching Mandate
+- **No Direct Commits**: Committing directly to the default branch (e.g., `main`, `master`) is strictly prohibited.
+- **Standardized Prefixes**: All work must occur on feature branches using the following prefixes:
+  - `feat/`: New features or scouts.
+  - `refactor/`: Improvements to core logic, engine, or interfaces.
+  - `fix/`: Bug fixes.
+  - `docs/`: Documentation updates.
+  - `chore/`: Maintenance tasks (dependencies, config).
 
-### 1. Verification
-- Use `gh issue list` to confirm the exact issue number.
-- Ensure all requirements in the issue body have been met.
-
-### 2. Committing with Linkage
-- When proposing a commit message, **ALWAYS** include a closure keyword at the end.
-- **Format**: "[Type]: [Summary]. Fixes #[Number]"
-- **Example**: "Refactor: Implement hybrid registry sync. Fixes #1"
-
-### 3. Pushing & Closing
-- Once the commit is pushed to the default branch (main), confirm that GitHub has automatically closed the issue.
-- If it hasn't closed (e.g., if working on a branch), manually close it using:
-  ```bash
-  gh issue close [NUMBER] --comment "Resolved via [COMMIT_HASH]"
-  ```
+### 2.2 Commit Message Standard
+- **Format**: `[Type]: [Summary]. [Reference]`
+- **Example**: `refactor: Implement persistence DAO. Ref #2`
+- **Example**: `feat: Add JobSearchScout. Fixes #3`
