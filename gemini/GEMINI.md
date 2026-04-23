@@ -87,6 +87,10 @@
 ### 5.1 Two-Store Design
 - **Static Registry (`gemini/registry.json`)**:
   - Contains static reference data (Field IDs, Option IDs, Master Template ID).
+  - **ID Formats**: 
+    - **Integer IDs** (e.g., `9`): Used by the `gh` CLI for commands like `gh project copy`.
+    - **Node IDs** (e.g., `PVT_...`, `PVTSSF_...`): Used by the GitHub GraphQL API.
+    - **Rule**: Never use a Node ID where an Integer ID is expected (and vice versa).
   - Source of truth for all GitHub Project configurations.
   - **Read-Mostly**: Changes require explicit user approval.
 - **Session Memory (`save_memory(scope='project')`)**:
