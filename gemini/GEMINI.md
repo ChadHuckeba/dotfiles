@@ -1,37 +1,41 @@
-# SurvivalStack | Global Instructions & Corporate Standards
+# SurvivalStack | Global Instructions & Corporate Standards (v2.0 - April 2026)
 
 ## 1. GitHub Project & Issue Governance
 
-### 1.1 GitHub Project Tracking & Management
-- **Mandate**: SurvivalStack uses GitHub Projects to maintain high-level awareness and tracking of all product roadmaps.
+### 1.1 Project Tracking & Management
+- **Mandate**: SurvivalStack uses GitHub Projects to maintain high-level awareness.
 - **Workflow**: 
-  - At the start of every session, I must identify and verify the active GitHub Project board for the current workspace.
-  - I must maintain constant awareness of the project items, ensuring that all active work is mapped to a project item and its status (Todo -> In Progress -> Done) is synchronized in real-time.
+  - At the start of every session, verify the active Project ID. 
+  - **Memory Persistence**: Use `save_memory(scope='project')` to store the Project ID once identified.
+  - Maintain real-time synchronization of project item status (Todo -> In Progress -> Done).
 
 ### 1.2 Issue Automation (Detection & Creation)
-Whenever a technical concern, architectural debt, or "Future Task" is identified:
-- **Identification**: Explicitly call out the concern to the user.
-- **Confirmation**: Ask "Should I track this as a GitHub issue?"
-- **Execution**: Use `gh issue create` with appropriate labels (`bug`, `enhancement`, `refactor`).
-- **Reference**: Provide the user with the new issue number and URL immediately.
+- **Identification**: Call out concerns or technical debt immediately.
+- **Execution**: Use `gh issue create` with labels (`bug`, `enhancement`, `refactor`).
+- **Traceability**: Link the issue ID in all related branch names and commits.
 
 ### 1.3 Issue Closure & Traceability
-- **Traceability**: EVERY commit must reference a GitHub issue ID (e.g., "Ref #123" or "Fixes #45") to ensure a traceable history on the corporate Roadmap.
-- **Closure**: Use closure keywords (`Fixes #X`, `Closes #X`) only when the task is fully validated and complete.
-- **Manual Closure**: If GitHub does not auto-close (e.g., working on a branch), use `gh issue close [NUMBER]`.
+- **Traceability**: EVERY commit must reference a GitHub issue ID (e.g., "Ref #123").
+- **Closure**: Only close issues after successful **Validation Protocols** (Section 3).
+
+### 1.4 Strategy Approval (Plan-First)
+- **Mandate**: For tasks involving multiple files or structural changes, I must propose a **Strategy Summary** (Branch Name, Commit Message, and Approach) for user approval before execution.
 
 ## 2. Git Workflow & Branching Standards
 
 ### 2.1 Branching Mandate
-- **No Direct Commits**: Committing directly to the default branch (e.g., `main`, `master`) is strictly prohibited.
-- **Standardized Prefixes**: All work must occur on feature branches using the following prefixes:
-  - `feat/`: New features or scouts.
-  - `refactor/`: Improvements to core logic, engine, or interfaces.
-  - `fix/`: Bug fixes.
-  - `docs/`: Documentation updates.
-  - `chore/`: Maintenance tasks (dependencies, config).
+- **No Direct Commits**: Direct commits to the default branch are strictly prohibited.
+- **Standardized Format**: `[prefix]/[issue-id]-[slug]`
+- **Prefixes**: `feat/`, `refactor/`, `fix/`, `docs/`, `chore/`.
+- **Example**: `feat/8-context-switching`
 
 ### 2.2 Commit Message Standard
 - **Format**: `[Type]: [Summary]. [Reference]`
-- **Example**: `refactor: Implement persistence DAO. Ref #2`
-- **Example**: `feat: Add JobSearchScout. Fixes #3`
+- **Convention**: Use imperative mood (e.g., "Add..." not "Added...").
+- **Example**: `feat: Implement project registry. Fixes #6`
+
+## 3. Validation Protocols
+
+### 3.1 Mandatory Verification
+- **Test-First Closure**: Before closing an issue or merging code, I must execute the project's test suite and report results.
+- **Linting**: Ensure code adheres to local styles (e.g., `ruff check` for Python, `prettier` for JSON).
