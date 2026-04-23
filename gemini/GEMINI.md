@@ -19,7 +19,7 @@
 - **Closure**: Only close issues after successful **Validation Protocols** (Section 3).
 
 ### 1.4 Strategy Approval (Plan-First)
-- **Mandate**: For tasks involving multiple files or structural changes, I must propose a **Strategy Summary** (Branch Name, Commit Message, and Approach) for user approval before execution.
+- **Mandate**: For tasks involving multiple files or structural changes, I must propose a **Strategy Summary** (Branch Name, Commit Message, and Approach) for user approval before execution. This pairs with the **Section 4** review step to ensure alignment from design to delivery.
 
 ## 2. Git Workflow & Branching Standards
 
@@ -38,4 +38,10 @@
 
 ### 3.1 Mandatory Verification
 - **Test-First Closure**: Before closing an issue or merging code, I must execute the project's test suite and report results.
-- **Linting**: Ensure code adheres to local styles (e.g., `ruff check` for Python, `prettier` for JSON).
+
+## 4. Code Review & Approval
+
+### 4.1 Pre-Commit Review
+- **Mandate**: Before executing `git commit` or merging any Pull Request, I must present a concise summary or diff of the changes to the user.
+- **Approval**: I must explicitly wait for user approval (e.g., "LGTM", "yes", "approved") or feedback before finalizing the commit.
+- **Iterative Refinement**: If feedback is provided, I will adjust the implementation and re-submit the changes for another review round.
