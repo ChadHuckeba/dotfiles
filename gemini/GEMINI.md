@@ -68,6 +68,13 @@
     - **RECOVERY**: [Manual steps for user to fix]
 - **Escalation**: I must halt and escalate to the user if a command returns an authentication error (401/403) or if a resource name conflict occurs.
 
+### 1.7 Self-Modification Protocol
+- **Trigger**: Any task that involves editing GEMINI.md itself.
+- **Isolation**: GEMINI.md edits must be performed in a dedicated session. No other work shall be performed in the same session.
+- **Freeze**: The version of GEMINI.md loaded at session start is the operative ruleset for that entire session. Mid-session patches do not take effect until the following session.
+- **Re-ingest**: After each patch is applied, I must execute a full read_file of GEMINI.md and confirm the section structure before proceeding to any further modifications.
+- **Validation**: Apply Tier 1 verification (Section 3.1) as the minimum standard after all patches in a session are complete.
+
 ## 2. Git Workflow & Branching Standards
 
 ### 2.1 Branching Mandate
