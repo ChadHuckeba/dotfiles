@@ -1,15 +1,20 @@
 # SurvivalStack | Global Instructions & Corporate Standards (v2.1 - April 2026)
 
-## 1. GitHub Project & Issue Governance
+## 1. Issue-First Governance
 
-### 1.1 Project Tracking & Management
+### 1.1 The Issue-First Mandate
+- **Mandate**: No work shall be performed without an associated GitHub Issue.
+- **Workflow**: The moment a concern (security, debt, bug) or feature is identified, I must create a `gh issue` before proposing a strategy. This issue ID must be referenced in all subsequent strategies, commits, and branch names (e.g., "Ref #123").
+- **Proactive Identification**: I am expected to call out technical debt or security risks and create issues for them autonomously.
+
+### 1.2 Project Tracking & Management
 - **Mandate**: SurvivalStack uses GitHub Projects to maintain high-level awareness.
 - **Workflow**: 
   - At the start of every session, verify the active Project ID. 
   - **Memory Persistence**: Use `save_memory(scope='project')` to store the Project ID once identified.
   - Maintain real-time synchronization of project item status (Todo -> In Progress -> Done).
 
-#### 1.1.1 Memory Schema
+#### 1.2.1 Memory Schema
 - **Two-Store Architecture**: 
   - **Dynamic Session State**: Governed by the JSON schema below, written via `save_memory(scope='project')`.
   - **Static Registry Data**: Lives in `gemini/registry.json`. Read from file, NOT from memory. Do not duplicate registry data into session memory.
@@ -26,12 +31,9 @@
   }
   ```
 
-### 1.2 Issue Automation (Detection & Creation)
+### 1.3 Issue Automation & Traceability
 - **Identification**: Call out concerns or technical debt immediately.
 - **Execution**: Use `gh issue create` with labels (`bug`, `enhancement`, `refactor`).
-- **Traceability**: Link the issue ID in all related branch names and commits.
-
-### 1.3 Issue Closure & Traceability
 - **Traceability**: EVERY commit must reference a GitHub issue ID (e.g., "Ref #123").
 - **Closure**: Only close issues after successful **Validation Protocols** (Section 3).
 
@@ -53,7 +55,18 @@
   - **If NO**: 
     1. Create the repository only.
     2. Synchronize labels: Fetch `standard_labels` from `gemini/registry.json` and apply them to the new repository using the `gh` CLI.
-    3. Record the repository in `gemini/registry.json` under `repositories` with `project_board_id: null`.
+    3. Record the repository in gemini/registry.json under repositories with project_board_id: null.
+
+### 1.6 Failure Recovery & Rollback
+- **Checkpoint Model**:
+    1. **Repo Creation (Irreversible)**: If this fails, halt immediately.
+    2. **Label/Project Sync (Reversible)**: If a sub-step fails, attempt one (1) automatic retry. If it fails again, do not delete the repo; instead, document the partial state.
+- **Failure Reporting**: On terminal failure, I must output:
+    - **CHECKPOINT**: [Location of failure]
+    - **ERROR**: [CLI Error Message]
+    - **STATUS**: [Partial/Dirty/Clean]
+    - **RECOVERY**: [Manual steps for user to fix]
+- **Escalation**: I must halt and escalate to the user if a command returns an authentication error (401/403) or if a resource name conflict occurs.
 
 ## 2. Git Workflow & Branching Standards
 
@@ -72,10 +85,12 @@
 
 ### 3.1 Mandatory Verification
 - **Test-First Closure**: Before closing an issue or merging code, I must execute the project's test suite and report results.
-- **No-Test-Suite Fallback**: If no test suite exists, I must:
-  1. Document that fact explicitly.
-  2. State what manual verification was performed instead.
-  3. Request explicit user confirmation before closing or merging.
+- **No-Test-Suite Fallback**: If no test suite exists, I must apply the following **Tiered Verification Checklist**:
+    - **Tier 1 (Documentation/Chore)**: Verify file existence and perform a linting/syntax check (e.g., `python -m py_compile`).
+    - **Tier 2 (Logic/Config Change)**: Execute a "Functional Probe"—a manual run of the modified code path with at least one success and one failure case.
+    - **Tier 3 (Structural/New Feature)**: Perform a "Regression Sweep"—verify the new feature works and manually confirm 1-2 existing related functionalities are unaffected.
+- **Standard**: Verification is "PASSED" only if output is reproducible and free of unhandled exceptions.
+- **Reporting**: I must explicitly state: "APPLIED VERIFICATION TIER [X]: [Reasoning for tier choice]. [Detailed result of manual probes]."
 
 ## 4. Code Review & Approval
 
@@ -83,6 +98,13 @@
 - **Mandate**: Before executing `git commit` or merging any Pull Request, I must present a concise summary or diff of the changes to the user.
 - **Approval**: I must explicitly wait for user approval (e.g., "LGTM", "yes", "approved") or feedback before finalizing the commit.
 - **Iterative Refinement**: If feedback is provided, I will adjust the implementation and re-submit the changes for another review round.
+
+### 4.2 Divergence Management
+- **Definition**: A "Strategy Divergence" occurs if the implementation changes the architectural approach, introduces new dependencies, or modifies public API signatures approved in Section 1.4.
+- **Protocol**: 
+    - **Minor (Internal Optimization)**: If changes are limited to private implementation details, provide an "Inline Justification" during the Section 4.1 review.
+    - **Major (Architectural Shift)**: If the approach diverges significantly, I must HALT the review, explain the shift, and return to Section 1.4 for re-approval.
+- **Required Language**: "STRATEGY DIVERGENCE: [Detailed reason for change]. [Justification of new approach]. Seeking re-approval per Section 1.4 before proceeding to commit."
 
 ## 5. Memory Architecture
 
@@ -96,15 +118,11 @@
   - Source of truth for all GitHub Project configurations.
   - **Read-Mostly**: Changes require explicit user approval.
 - **Session Memory (`save_memory(scope='project')`)**:
-- Dynamic runtime state only (Branch, Issues, Session Summaries).
-- Governed by the schema in **Section 1.1.1**.
-- **Rule**: Never write static registry data here.
+  - Dynamic runtime state only (Branch, Issues, Session Summaries).
+  - Governed by the schema in **Section 1.2.1**.
+  - **Rule**: Never write static registry data here.
 
 ## 6. Engineering Safety Protocols
-
-### 6.0 Issue-First Mandate
-- **Mandate**: No work shall be performed without an associated GitHub Issue.
-- **Workflow**: The moment a concern (security, debt, bug) or feature is identified, I must create a `gh issue` before proposing a strategy. This issue ID must be referenced in all subsequent strategies, commits, and branch names.
 
 ### 6.1 Atomic Edits
 - **Mandate**: Never use `write_file` for existing files >100 lines. 
