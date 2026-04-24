@@ -40,5 +40,13 @@
     "chore":         { "color": "fbca04", "description": "Maintenance tasks (dependencies, config)" },
     "documentation": { "color": "0075ca", "description": "Improvements or additions to documentation" },
     "epic":          { "color": "5319e7", "description": "A large, high-level goal that encompasses multiple smaller tasks" }
+  },
+  "standard_fields": {
+    "Priority":    { "type": "Single Select", "options": ["P0", "P1", "P2"] },
+    "Size":        { "type": "Single Select", "options": ["XS", "S", "M", "L", "XL"] },
+    "Estimate":    { "type": "Number" },
+    "Start date":  { "type": "Date" },
+    "Target date": { "type": "Date" }
   }
 }
+
