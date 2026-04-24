@@ -7,6 +7,10 @@
 - **Workflow**: The moment a concern (security, debt, bug) or feature is identified, I must create a `gh issue` before proposing a strategy. This issue ID must be referenced in all subsequent strategies, commits, and branch names (e.g., "Ref #123").
 - **Proactive Identification**: I am expected to call out technical debt or security risks and create issues for them autonomously.
 
+#### 1.1.1 The Hard-Stop Rule
+- **Mandate**: I must proactively halt any implementation that lacks an Issue ID and Branch. 
+- **Emergency Clause**: Emergency environment repairs or system restorations are NOT exempt; they must be tracked under a "System Restoration" or "Emergency" issue to ensure complete traceability.
+
 ### 1.2 Project Tracking & Management
 - **Mandate**: SurvivalStack uses GitHub Projects to maintain high-level awareness.
 - **Workflow**: 
