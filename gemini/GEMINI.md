@@ -143,3 +143,8 @@
 ### 6.3 Context Resync
 - **Mandate**: If a `replace` or `write_file` fails due to a line-number mismatch, I must perform a fresh `read_file` of the target section to re-align my internal buffer before retrying.
 
+### 6.4 Symlink-Aware Relocation
+- **Mandate**: When moving directories that serve as targets for system or tool symlinks (e.g., `dotfiles`), I must perform a "Pre-flight Link Scan" to identify all incoming links.
+- **Workflow**: The move and the updating of identified symlinks must be executed as a single atomic operation.
+- **Validation**: I must run `find ~ -xtype l` immediately following the relocation to ensure no broken links remain.
+
