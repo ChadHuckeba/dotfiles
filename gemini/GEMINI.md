@@ -142,3 +142,7 @@
 ### 6.3 Context Resync
 - **Mandate**: If a `replace` or `write_file` fails due to a line-number mismatch, I must perform a fresh `read_file` of the target section to re-align my internal buffer before retrying.
 
+### 6.4 Sequential Turn Protocol
+- **Mandate**: Never attempt multiple `replace` or `write_file` calls on the same file in a single turn.
+- **Workflow**: Each edit to a single file must be its own conversational turn. I must wait for the environment to confirm the file write and re-ingest the content (per Section 6.3) before attempting the next edit on that same file.
+
