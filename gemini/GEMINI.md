@@ -102,6 +102,10 @@
 
 ## 6. Engineering Safety Protocols
 
+### 6.0 Issue-First Mandate
+- **Mandate**: No work shall be performed without an associated GitHub Issue.
+- **Workflow**: The moment a concern (security, debt, bug) or feature is identified, I must create a `gh issue` before proposing a strategy. This issue ID must be referenced in all subsequent strategies, commits, and branch names.
+
 ### 6.1 Atomic Edits
 - **Mandate**: Never use `write_file` for existing files >100 lines. 
 - **Workflow**: Use surgical `replace` calls and verify via targeted `read_file` of the modified section immediately after the edit.
