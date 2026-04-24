@@ -4,14 +4,16 @@
     "vanguard": { "project_board_id": "PVT_kwHOAneE784BUCMu" },
     "dotfiles": { "project_board_id": "PVT_kwHOAneE784BVehb" },
     "aether": { "project_board_id": "PVT_kwHOAneE784BVfhh" },
-    "huckos_c137": { "project_board_id": "PVT_kwHOAneE784BVh28" }
+    "huckos_c137": { "project_board_id": "PVT_kwHOAneE784BVh28" },
+    "houndstack": { "project_board_id": "PVT_kwHOAneE784BVn30" }
   },
   "field_ids": {
     "status": {
       "vanguard": "PVTSSF_lAHOAneE784BUCMuzhBNEqg",
       "dotfiles": "PVTSSF_lAHOAneE784BVehbzhQ6Emk",
       "aether": "PVTSSF_lAHOAneE784BVfhhzhQ69hI",
-      "huckos_c137": "PVTSSF_lAHOAneE784BVh28zhQ9ELI"
+      "huckos_c137": "PVTSSF_lAHOAneE784BVh28zhQ9ELI",
+      "houndstack": "PVTSSF_lAHOAneE784BVn30zhRCc3g"
     }
   },
   "option_ids": {
