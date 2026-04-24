@@ -1,0 +1,18 @@
+# Security & Secrets
+.env
+*.key
+*.pem
+credentials.json
+*.token
+
+# Gemini CLI History & Memory
+.gemini/
+project_memory.json
+
+# System & OS
+.DS_Store
+Thumbs.db
+
+# Shell & Local Config
+.zcompdump*
+.python-version
