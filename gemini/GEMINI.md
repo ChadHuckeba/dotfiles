@@ -94,6 +94,20 @@
   - Source of truth for all GitHub Project configurations.
   - **Read-Mostly**: Changes require explicit user approval.
 - **Session Memory (`save_memory(scope='project')`)**:
-  - Dynamic runtime state only (Branch, Issues, Session Summaries).
-  - Governed by the schema in **Section 1.1.1**.
-  - **Rule**: Never write static registry data here.
+- Dynamic runtime state only (Branch, Issues, Session Summaries).
+- Governed by the schema in **Section 1.1.1**.
+- **Rule**: Never write static registry data here.
+
+## 6. Engineering Safety Protocols
+
+### 6.1 Atomic Edits
+- **Mandate**: Never use `write_file` for existing files >100 lines. 
+- **Workflow**: Use surgical `replace` calls and verify via targeted `read_file` of the modified section immediately after the edit.
+
+### 6.2 Pre-flight Checks
+- **Mandate**: Perform syntax validation before finalizing a task.
+- **Workflow**: Run language-appropriate syntax checks (e.g., `python -m py_compile [file]` or `tsc --noEmit`) after modification but before declaring a task complete.
+
+### 6.3 Context Resync
+- **Mandate**: If a `replace` or `write_file` fails due to a line-number mismatch, I must perform a fresh `read_file` of the target section to re-align my internal buffer before retrying.
+

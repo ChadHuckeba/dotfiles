@@ -4,8 +4,9 @@ Personal configuration files and automated workflows for my development environm
 ## 📁 Repository Structure
 
 ### ♊ Gemini CLI (`gemini/`)
-Contains global instructions and workflows.
-- **GEMINI.md**: Global "laws" and memories shared across all projects.
+Contains global instructions, service registries, and operational workflows.
+- **GEMINI.md**: Global "laws" and core engineering protocols shared across all projects.
+- **README.md**: [Visual guide to the Three-Store Memory Architecture and Service Layer (Aether).](./gemini/README.md)
     - *Note: Project-specific rules are kept "out-of-band" from this repository and reside in their respective project roots at `.gemini/GEMINI.md`.*
 
 ### 🐚 Shell (`shell/`)
