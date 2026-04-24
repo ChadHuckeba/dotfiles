@@ -44,14 +44,16 @@
   - **Consult**: I MUST ask: "Should I also provision a standardized Project Board from the Master Template?"
   - **If YES**:
     1. Create the repository.
-    2. Resolve the Master Template Project ID from `gemini/registry.json`.
-    3. Execute `gh project copy <ID> --owner ChadHuckeba --title "<Repo Name>"` to create the standardized board (ensuring the Project Board name matches the Repository name exactly).
-    4. Link the project board to the new repository.
-    5. Record the new repository and its assigned Project Board ID in the `repositories` key of `gemini/registry.json`.
-    6. Fetch any unique Field/Option IDs and update `gemini/registry.json` (requires user approval per **Section 5**).
+    2. Synchronize labels: Fetch `standard_labels` from `gemini/registry.json` and apply them to the new repository using the `gh` CLI.
+    3. Resolve the Master Template Project ID from `gemini/registry.json`.
+    4. Execute `gh project copy <ID> --owner ChadHuckeba --title "<Repo Name>"` to create the standardized board (ensuring the Project Board name matches the Repository name exactly).
+    5. Link the project board to the new repository.
+    6. Record the new repository and its assigned Project Board ID in the `repositories` key of `gemini/registry.json`.
+    7. Fetch any unique Field/Option IDs and update `gemini/registry.json` (requires user approval per **Section 5**).
   - **If NO**: 
     1. Create the repository only.
-    2. Record the repository in `gemini/registry.json` under `repositories` with `project_board_id: null`.
+    2. Synchronize labels: Fetch `standard_labels` from `gemini/registry.json` and apply them to the new repository using the `gh` CLI.
+    3. Record the repository in `gemini/registry.json` under `repositories` with `project_board_id: null`.
 
 ## 2. Git Workflow & Branching Standards
 

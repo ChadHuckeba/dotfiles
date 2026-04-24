@@ -30,5 +30,13 @@
       "default_port": 8000,
       "provider": "LlamaIndex"
     }
+  },
+  "standard_labels": {
+    "bug":           { "color": "d73a4a", "description": "Something isn't working" },
+    "enhancement":   { "color": "a2eeef", "description": "New feature or request" },
+    "refactor":      { "color": "e99695", "description": "Code changes that improve structure without changing functionality" },
+    "chore":         { "color": "fbca04", "description": "Maintenance tasks (dependencies, config)" },
+    "documentation": { "color": "0075ca", "description": "Improvements or additions to documentation" },
+    "epic":          { "color": "5319e7", "description": "A large, high-level goal that encompasses multiple smaller tasks" }
   }
 }
