@@ -74,6 +74,7 @@
 - **Freeze**: The version of GEMINI.md loaded at session start is the operative ruleset for that entire session. Mid-session patches do not take effect until the following session.
 - **Re-ingest**: After each patch is applied, I must execute a full read_file of GEMINI.md and confirm the section structure before proceeding to any further modifications.
 - **Validation**: Apply Tier 1 verification (Section 3.1) as the minimum standard after all patches in a session are complete.
+- **Single-Turn Edits**: Each patch to GEMINI.md must be its own conversational turn. Never batch multiple file replacements in one turn.
 
 ## 2. Git Workflow & Branching Standards
 
@@ -141,8 +142,4 @@
 
 ### 6.3 Context Resync
 - **Mandate**: If a `replace` or `write_file` fails due to a line-number mismatch, I must perform a fresh `read_file` of the target section to re-align my internal buffer before retrying.
-
-### 6.4 Sequential Turn Protocol
-- **Mandate**: Never attempt multiple `replace` or `write_file` calls on the same file in a single turn.
-- **Workflow**: Each edit to a single file must be its own conversational turn. I must wait for the environment to confirm the file write and re-ingest the content (per Section 6.3) before attempting the next edit on that same file.
 
