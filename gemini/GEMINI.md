@@ -1,4 +1,4 @@
-# SurvivalStack | Global Instructions & Corporate Standards (v2.1 - April 2026)
+# SurvivalStack | Global Instructions & Corporate Standards (04.24.2026)
 
 ## 1. Issue-First Governance
 
