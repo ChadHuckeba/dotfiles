@@ -7,7 +7,8 @@
     "dotfiles": { "project_board_id": "PVT_kwHOAneE784BVehb" },
     "aether": { "project_board_id": "PVT_kwHOAneE784BVfhh" },
     "huckos_c137": { "project_board_id": "PVT_kwHOAneE784BVh28" },
-    "houndstack": { "project_board_id": "PVT_kwHOAneE784BVn30" }
+    "houndstack": { "project_board_id": "PVT_kwHOAneE784BVn30" },
+    "monica": { "project_board_id": "PVT_kwHOAneE784BVs5u" }
   },
   "field_ids": {
     "_description": "Maps specific field Node IDs (e.g., Status) for each Project Board. Keys match the repository name due to the 1:1 repo-to-board architecture.",
@@ -16,7 +17,8 @@
       "dotfiles": "PVTSSF_lAHOAneE784BVehbzhQ6Emk",
       "aether": "PVTSSF_lAHOAneE784BVfhhzhQ69hI",
       "huckos_c137": "PVTSSF_lAHOAneE784BVh28zhQ9ELI",
-      "houndstack": "PVTSSF_lAHOAneE784BVn30zhRCc3g"
+      "houndstack": "PVTSSF_lAHOAneE784BVn30zhRCc3g",
+      "monica": "PVTSSF_lAHOAneE784BVs5uzhRG1_g"
     }
   },
   "option_ids": {
