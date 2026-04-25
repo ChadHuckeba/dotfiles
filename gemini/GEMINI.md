@@ -123,6 +123,7 @@
 ### 5.1 Two-Store Design
 - **Static Registry (`gemini/registry.json`)**:
   - Contains static reference data (Field IDs, Option IDs, Master Template ID).
+  - **Self-Documentation Mandate**: All top-level objects MUST include a `_description` key explaining their purpose and internal structure.
   - **ID Formats**: 
     - **Integer IDs** (e.g., `9`): Used by the `gh` CLI for commands like `gh project copy`.
     - **Node IDs** (e.g., `PVT_...`, `PVTSSF_...`): Used by the GitHub GraphQL API.
