@@ -3,11 +3,21 @@
   "master_template_project_id": 9,
   "repositories": {
     "_description": "Maps local repository names to their overarching GitHub Project Board Node IDs. Serves as the primary 1:1 lookup for context.",
-    "vanguard": { "project_board_id": "PVT_kwHOAneE784BUCMu" },
-    "dotfiles": { "project_board_id": "PVT_kwHOAneE784BVehb" },
-    "aether": { "project_board_id": "PVT_kwHOAneE784BVfhh" },
-    "huckos_c137": { "project_board_id": "PVT_kwHOAneE784BVh28" },
-    "houndstack": { "project_board_id": "PVT_kwHOAneE784BVn30" }
+    "vanguard": {
+      "project_board_id": "PVT_kwHOAneE784BUCMu"
+    },
+    "dotfiles": {
+      "project_board_id": "PVT_kwHOAneE784BVehb"
+    },
+    "aether": {
+      "project_board_id": "PVT_kwHOAneE784BVfhh"
+    },
+    "huckos_c137": {
+      "project_board_id": "PVT_kwHOAneE784BVh28"
+    },
+    "houndstack": {
+      "project_board_id": "PVT_kwHOAneE784BVn30"
+    }
   },
   "field_ids": {
     "_description": "Maps specific field Node IDs (e.g., Status) for each Project Board. Keys match the repository name due to the 1:1 repo-to-board architecture.",
@@ -40,20 +50,59 @@
   },
   "standard_labels": {
     "_description": "Corporate standard issue labels. These are automatically synchronized to new repositories upon creation.",
-    "bug":           { "color": "d73a4a", "description": "Something isn't working" },
-    "enhancement":   { "color": "a2eeef", "description": "New feature or request" },
-    "refactor":      { "color": "e99695", "description": "Code changes that improve structure without changing functionality" },
-    "chore":         { "color": "fbca04", "description": "Maintenance tasks (dependencies, config)" },
-    "documentation": { "color": "0075ca", "description": "Improvements or additions to documentation" },
-    "epic":          { "color": "5319e7", "description": "A large, high-level goal that encompasses multiple smaller tasks" }
+    "bug": {
+      "color": "d73a4a",
+      "description": "Something isn't working"
+    },
+    "enhancement": {
+      "color": "a2eeef",
+      "description": "New feature or request"
+    },
+    "refactor": {
+      "color": "e99695",
+      "description": "Code changes that improve structure without changing functionality"
+    },
+    "chore": {
+      "color": "fbca04",
+      "description": "Maintenance tasks (dependencies, config)"
+    },
+    "documentation": {
+      "color": "0075ca",
+      "description": "Improvements or additions to documentation"
+    },
+    "epic": {
+      "color": "5319e7",
+      "description": "A large, high-level goal that encompasses multiple smaller tasks"
+    }
   },
   "standard_fields": {
     "_description": "The Standard Taxonomy for extended project fields (Priority, Size). Defines valid types and options for string-based updates via the gh CLI.",
-    "Priority":    { "type": "Single Select", "options": ["P0", "P1", "P2"] },
-    "Size":        { "type": "Single Select", "options": ["XS", "S", "M", "L", "XL"] },
-    "Estimate":    { "type": "Number" },
-    "Start date":  { "type": "Date" },
-    "Target date": { "type": "Date" }
+    "Priority": {
+      "type": "Single Select",
+      "options": [
+        "P0",
+        "P1",
+        "P2"
+      ]
+    },
+    "Size": {
+      "type": "Single Select",
+      "options": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ]
+    },
+    "Estimate": {
+      "type": "Number"
+    },
+    "Start date": {
+      "type": "Date"
+    },
+    "Target date": {
+      "type": "Date"
+    }
   }
 }
-
